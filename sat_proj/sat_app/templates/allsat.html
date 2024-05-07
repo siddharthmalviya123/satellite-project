@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satellite Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .download-btn {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .download-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+     <a href="{% url 'download_satellites_csv' %}" download="satellites.csv" class="download-btn">Download CSV</a>
+    <h1>Satellite Data</h1>
+    <table>
+        <tr>
+            <th>Object Name</th>
+            <th>Object ID</th>
+            <th>Epoch</th>
+            <th>Mean Motion</th>
+            <th>Eccentricity</th>
+            <th>Inclination</th>
+            <th>RA of Ascending Node</th>
+            <th>Argument of Pericenter</th>
+            <th>Mean Anomaly</th>
+            <th>Ephemeris Type</th>
+            <th>Classification Type</th>
+            <th>NORAD Catalog ID</th>
+            <th>Element Set Number</th>
+            <th>Rev at Epoch</th>
+            <th>BStar</th>
+            <th>Mean Motion Dot</th>
+            <th>Mean Motion DDot</th>
+        </tr>
+        {% for satellite in satellites %}
+        <tr>
+            <td>{{ satellite.object_name }}</td>
+            <td>{{ satellite.object_id }}</td>
+            <td>{{ satellite.epoch }}</td>
+            <td>{{ satellite.mean_motion }}</td>
+            <td>{{ satellite.eccentricity }}</td>
+            <td>{{ satellite.inclination }}</td>
+            <td>{{ satellite.ra_of_asc_node }}</td>
+            <td>{{ satellite.arg_of_pericenter }}</td>
+            <td>{{ satellite.mean_anomaly }}</td>
+            <td>{{ satellite.ephemeris_type }}</td>
+            <td>{{ satellite.classification_type }}</td>
+            <td>{{ satellite.norad_cat_id }}</td>
+            <td>{{ satellite.element_set_no }}</td>
+            <td>{{ satellite.rev_at_epoch }}</td>
+            <td>{{ satellite.bstar }}</td>
+            <td>{{ satellite.mean_motion_dot }}</td>
+            <td>{{ satellite.mean_motion_ddot }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>
